@@ -1,19 +1,26 @@
 import Button from 'react-bootstrap/Button';
 import Card from 'react-bootstrap/Card';
 import React from 'react'
+import {useNavigate} from "react-router-dom"
 
-const MovieCard = () => {
+const MovieCard = ({movie}) => {
+  console.log(movie);
+  const navigate = useNavigate();
+
+  const handelNavigate = ()=>{
+
+    navigate(`/player/${movie._id}`)
+  }
   return (
     <div>
        <Card style={{ width: '18rem' }}>
-      <Card.Img variant="top" src="holder.js/100px180" />
+      <Card.Img variant="top" src={`http://localhost:5000/public/${movie.image}`} />
       <Card.Body>
-        <Card.Title>Card Title</Card.Title>
+        <Card.Title>{movie.title}</Card.Title>
         <Card.Text>
-          Some quick example text to build on the card title and make up the
-          bulk of the card's content.
+          {movie.discription}
         </Card.Text>
-        <Button variant="primary">Go somewhere</Button>
+        <Button variant="primary" onClick={()=>handelNavigate()}>Watch it</Button>
       </Card.Body>
     </Card>
     </div>
